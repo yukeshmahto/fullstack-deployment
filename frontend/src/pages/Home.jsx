@@ -32,6 +32,7 @@ const Home = () => {
       <section className="hero-panel">
         <div>
           <h1>Welcome to VideoTube</h1>
+          <h2>The best place to watch videos.</h2>
           <p>
             Search, browse, and watch published videos. Login to upload, edit,
             or manage your content.
