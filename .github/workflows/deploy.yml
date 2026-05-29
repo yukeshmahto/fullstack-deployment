@@ -19,5 +19,14 @@ jobs:
 
           script: |
             cd ~/fullstack-deployment
+
+            echo "====================" >> deploy.log
+            echo "Date: $(date)" >> deploy.log
+            echo "Commit: ${{ github.sha }}" >> deploy.log
+            echo "Actor: ${{ github.actor }}" >> deploy.log
+
             git pull origin main
             docker compose up --build -d
+
+            echo "Status: SUCCESS" >> deploy.log
+            echo "" >> deploy.log
