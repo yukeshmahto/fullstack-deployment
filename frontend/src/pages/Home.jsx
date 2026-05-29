@@ -33,6 +33,7 @@ const Home = () => {
         <div>
           <h1>Welcome to VideoTube</h1>
           <h2>The best place to watch videos.</h2>
+            <p>lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
           <p>
             Search, browse, and watch published videos. Login to upload, edit,
             or manage your content.
