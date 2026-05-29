@@ -1,39 +1,39 @@
 name: Deploy to EC2
 
 on:
-push:
-branches:
-- main
+  push:
+    branches:
+      - main
 
 jobs:
-deploy:
-runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-latest
 
-steps:
-  - name: Deploy to EC2
-    uses: appleboy/ssh-action@v1.0.3
-    with:
-      host: ${{ secrets.EC2_HOST }}
-      username: ${{ secrets.EC2_USER }}
-      key: ${{ secrets.EC2_SSH_KEY }}
+    steps:
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
 
-      script: |
-        cd ~/fullstack-deployment
+          script: |
+            cd ~/fullstack-deployment
 
-        START=$(date +%s)
+            START=$(date +%s)
 
-        git pull origin main
+            git pull origin main
 
-        COMMIT=$(git rev-parse --short HEAD)
+            COMMIT=$(git rev-parse --short HEAD)
 
-        docker compose up --build -d
+            docker compose up --build -d
 
-        END=$(date +%s)
+            END=$(date +%s)
 
-        echo "====================" >> deploy.log
-        echo "Date: $(date)" >> deploy.log
-        echo "Commit: $COMMIT" >> deploy.log
-        echo "Actor: ${{ github.actor }}" >> deploy.log
-        echo "Duration: $((END-START)) seconds" >> deploy.log
-        echo "Status: SUCCESS" >> deploy.log
-        echo "" >> deploy.log
+            echo "====================" >> deploy.log
+            echo "Date: $(date)" >> deploy.log
+            echo "Commit: $COMMIT" >> deploy.log
+            echo "Actor: ${{ github.actor }}" >> deploy.log
+            echo "Duration: $((END-START)) seconds" >> deploy.log
+            echo "Status: SUCCESS" >> deploy.log
+            echo "" >> deploy.log
