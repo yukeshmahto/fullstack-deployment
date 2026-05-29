@@ -22,7 +22,7 @@ jobs:
 
             echo "====================" >> deploy.log
             echo "Date: $(date)" >> deploy.log
-            echo "Commit: ${GITHUB_SHA::7}" >> deploy.log
+            echo "Commit: ${{ github.sha }}" >> deploy.log
             echo "Actor: ${{ github.actor }}" >> deploy.log
 
             git pull origin main
